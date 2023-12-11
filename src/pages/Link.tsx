@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
+import './Link-style.css'
 
 const Menu = () => {
     return (
-        <nav>
+        <nav className='header'>
             <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/login">Login</Link></li>

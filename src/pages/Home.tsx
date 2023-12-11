@@ -1,6 +1,5 @@
 import Link from "./Link";
 
-
 const Home = () => {
     return (
         <>

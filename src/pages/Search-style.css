@@ -1,0 +1,9 @@
+input{
+    margin: 3px;
+    gap: 3rem;
+}
+
+.result{
+    background-color: aquamarine;
+    color: bisque;
+}

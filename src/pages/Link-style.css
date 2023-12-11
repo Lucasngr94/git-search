@@ -1,0 +1,29 @@
+.header{
+    display: flex;
+    background-color:#071520 ;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    justify-content: space-around;
+    margin-bottom: 400px;
+}
+
+ul{
+    display: flex;
+    margin-right: 10px;
+    justify-content: space-between;
+    list-style: none;
+}
+
+li{
+    margin-right: 10px;   
+}
+
+li:hover {
+    color: #007bff;
+}
+
+a{
+    text-decoration: none;
+}
