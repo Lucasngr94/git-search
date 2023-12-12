@@ -2,11 +2,17 @@ import { useState } from "react";
 import { userProps } from '../types/user';
 import Link from "./Link";
 import './Search-style.css'
+import { IconButton } from '@chakra-ui/react'
+import {SearchIcon} from '@chakra-ui/icons'
+import { Divider } from '@chakra-ui/react'
+import { useToast } from '@chakra-ui/react'
+import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
 
 const Search = () => {
     const [data, setData] = useState<userProps | null>(null);
     const [username, setUsername] = useState<string>('');
     const [dataUser, setDataUser] = useState<userProps | null>(null);
+    const toast = useToast()
 
     const getUser = async () => {
         try {
@@ -33,7 +39,17 @@ const Search = () => {
         setUsername(e.target.value);
     }
 
-    const handleClick = () => !username ? alert('Campo de valor vazio') : getUser();
+    const handleClick = () => !username ? toast({
+        title: 'Campo de valor vazio',
+        status: 'error',
+        duration: 7000,
+        isClosable: true,
+      }) : (getUser(), toast({
+        title: 'Usuario encontrado',
+        status: 'success',
+        duration: 7000,
+        isClosable: true,
+      }));
 
     return (
         <>
@@ -47,8 +63,14 @@ const Search = () => {
                         value={username}
                         onChange={handleChange}
                     />
-                    <button className='botao' onClick={handleClick}>Search</button>
+                    <IconButton
+                        colorScheme=''
+                        aria-label='Search database'
+                        onClick={handleClick}
+                        icon={<SearchIcon />}
+                    />
                 </div>
+                <Divider />
                 <div className="result">
                     {dataUser?.avatar_url ? <p>{dataUser?.avatar_url}</p> : null}
                     {dataUser?.followers ? <p>Seguidores: {dataUser?.followers}</p> : null}
@@ -61,3 +83,5 @@ const Search = () => {
 }
 
 export default Search;
+
+
