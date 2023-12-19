@@ -2,11 +2,11 @@ import { useState } from "react";
 import { userProps } from '../types/user';
 import Link from "./Link";
 import './Search-style.css'
-import { IconButton } from '@chakra-ui/react'
+import { Heading, IconButton } from '@chakra-ui/react'
 import {SearchIcon} from '@chakra-ui/icons'
 import { Divider } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
-import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
+import { Card, CardHeader, CardBody, Text, Image } from '@chakra-ui/react'
 
 const Search = () => {
     const [data, setData] = useState<userProps | null>(null);
@@ -56,7 +56,7 @@ const Search = () => {
           });
         } else {
           const userData = await getUser();
-      
+        
           if (userData) {
             toast({
               title: 'Usuário encontrado',
@@ -96,10 +96,18 @@ const Search = () => {
                 </div>
                 <Divider />
                 <div className="result">
-                    {dataUser?.avatar_url ? <p>{dataUser?.avatar_url}</p> : null}
-                    {dataUser?.followers ? <p>Seguidores: {dataUser?.followers}</p> : null}
-                    {dataUser?.following ? <p>Seguindo: {dataUser?.following}</p> : null}
-                    {dataUser?.html_url ? <p><a href={dataUser?.html_url}>Ver perfil</a></p> : null}
+                { Response ? (
+                <Card   
+                    direction={{ base: 'column', sm: 'row' }}
+                    overflow='hidden'
+                    variant='filed'>
+                <CardBody>
+                    {dataUser?.avatar_url && <Image src={dataUser.avatar_url} maxW={{ base: '100%', sm: '200px' }} objectFit='cover' borderRadius='lg' alt='avatar_img' />}
+                    {dataUser?.followers && <Text pt='2' fontSize='sm'>Seguidores: {dataUser.followers}</Text>}
+                    {dataUser?.following && <Text pt='2' fontSize='sm'>Seguindo: {dataUser.following}</Text>}
+                    {dataUser?.html_url && <Text pt='2' fontSize='sm'><a href={dataUser.html_url}>Ver perfil</a></Text>}
+                </CardBody>
+                </Card>) : null}
                 </div>
             </div>
         </>
