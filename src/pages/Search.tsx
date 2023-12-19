@@ -16,40 +16,64 @@ const Search = () => {
 
     const getUser = async () => {
         try {
-            const response = await fetch(`https://api.github.com/users/${username}`);
-            const data = await response.json();
-            setData(data);
-
-            const { avatar_url, followers, following, html_url } = data;
-            const dataUser: userProps ={
-                avatar_url, 
-                followers, 
-                following,  
-                html_url
-            }
-            setDataUser(dataUser)
-        
+          const response = await fetch(`https://api.github.com/users/${username}`);
+          
+          if (!response.ok) {
+            return null; 
+          }
+          
+          const data = await response.json();
+          setData(data);
+      
+          const { avatar_url, followers, following, html_url } = data;
+          const dataUser = {
+            avatar_url,
+            followers,
+            following,
+            html_url
+          };
+          setDataUser(dataUser);
+          
+          return dataUser; 
+      
         } catch (err) {
-            console.error(err);
+          console.error(err);
+          return null; 
         }
-    
-    }
+      };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(e.target.value);
     }
 
-    const handleClick = () => !username ? toast({
-        title: 'Campo de valor vazio',
-        status: 'error',
-        duration: 7000,
-        isClosable: true,
-      }) : (getUser(), toast({
-        title: 'Usuario encontrado',
-        status: 'success',
-        duration: 7000,
-        isClosable: true,
-      }));
+    const handleClick = async () => {
+        if (!username) {
+          toast({
+            title: 'Campo de valor vazio',
+            status: 'error',
+            duration: 7000,
+            isClosable: true,
+          });
+        } else {
+          const userData = await getUser();
+      
+          if (userData) {
+            toast({
+              title: 'Usuário encontrado',
+              status: 'success',
+              duration: 7000,
+              isClosable: true,
+            });
+          } else {
+            toast({
+              title: 'Usuário não encontrado',
+              status: 'error',
+              duration: 7000,
+              isClosable: true,
+            });
+          }
+        }
+      };
 
     return (
         <>
