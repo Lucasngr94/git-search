@@ -96,7 +96,6 @@ const Search = () => {
                 </div>
                 <Divider />
                 <div className="result">
-                { Response ? (
                 <Card   
                     direction={{ base: 'column', sm: 'row' }}
                     overflow='hidden'
@@ -107,7 +106,7 @@ const Search = () => {
                     {dataUser?.following && <Text pt='2' fontSize='sm'>Seguindo: {dataUser.following}</Text>}
                     {dataUser?.html_url && <Text pt='2' fontSize='sm'><a href={dataUser.html_url}>Ver perfil</a></Text>}
                 </CardBody>
-                </Card>) : null}
+                </Card>
                 </div>
             </div>
         </>
