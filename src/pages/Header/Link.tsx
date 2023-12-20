@@ -12,12 +12,12 @@ const Menu = () => {
         <nav>
             <Breadcrumb>
             <BreadcrumbItem>
-                <BreadcrumbLink as={Link} to='/'>
+                <BreadcrumbLink as={Link} to='/home'>
                 Home
                 </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbItem>
-                <BreadcrumbLink as={Link} to='/login'>
+                <BreadcrumbLink as={Link} to='/'>
                 Login
                 </BreadcrumbLink>
             </BreadcrumbItem>

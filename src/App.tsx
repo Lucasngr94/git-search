@@ -1,10 +1,15 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import './App.css'
-import Home from './pages/home'
-import Login from './pages/login'
-import Search from './pages/search'
+import Home from './pages/Home/Home'
+import Login from './pages/Login/Login'
+import Search from './pages/Search/Search'
 
+
+const Private = ({ Item }) => {
+    const signed = false;
+
+    return signed ? <Item /> : <Login />
+} 
 
 function App() {
 
@@ -12,10 +17,10 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/Login' element={<Login/>}/>
+          <Route path='/' element={<Login/>}/>
+          <Route path='/Home' element={<Private Item={Home}/>}/>
           <Route path='/Search' element={<Search/>}/>
-          </Routes>
+        </Routes>
       </Router>
     </>
   )

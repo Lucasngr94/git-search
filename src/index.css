@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   text-align: center;
+  box-sizing: border-box;
   background-color: rgb(8, 8, 27);
   color: white;
 }
