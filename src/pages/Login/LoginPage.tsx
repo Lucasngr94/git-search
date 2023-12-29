@@ -5,13 +5,15 @@ interface LoginFormProps {
     onLogin: (username: string, password: string) => void;
   }
   
-  const Login: React.FC<LoginFormProps> = ({ onLogin }) => {
+  const LoginPage: React.FC<LoginFormProps> = ({ onLogin }) => {
     const [userLogin, setUserLogin] = useState('');
     const [password, setPassword] = useState('');
   
     const handleLogin = (e: React.FormEvent) => {
       e.preventDefault();
-      onLogin(userLogin, password);
+      onLogin(userLogin,password,() => {
+        window.location.href = "/home";
+      });
     };
   
     return (
@@ -37,4 +39,4 @@ interface LoginFormProps {
     );
 };
 
-export default Login
+export default LoginPage

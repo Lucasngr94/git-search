@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { userProps } from '../../types/user';
+import { userProps } from '../../types/types';
 import Link from "../Header/Link";
 import './Search-style.css'
 import { Heading, IconButton } from '@chakra-ui/react'
